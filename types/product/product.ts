@@ -1,0 +1,1 @@
+import {ProductEntity} from "./product.entity";

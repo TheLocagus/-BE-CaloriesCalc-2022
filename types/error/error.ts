@@ -1,0 +1,1 @@
+import {ErrorEntity} from './error.entity'
