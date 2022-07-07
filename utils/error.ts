@@ -15,8 +15,6 @@ export const createError = (status: number, message: string) => {
 }
 
 export const errorHandle = (err: ErrorHandler, req: Request, res: Response, next: NextFunction) => {
-    // console.log(err)
-    console.log(err.message)
     const errorStatus = err.status || 500
     const errorMessage = err.message || "Something went wrong"
 

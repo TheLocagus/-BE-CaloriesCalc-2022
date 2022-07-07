@@ -12,7 +12,10 @@ userRouter
         try {
             const favProducts = await FavouriteMealRecord.getAll(id);
             const favMeals = convertDatabaseDatasToFrontEndDatas(favProducts, id)
-            res.json(favMeals);
+            res.json({
+                favMeals,
+                success: true
+            });
         } catch (e){
             next(e)
         }
@@ -31,7 +34,10 @@ userRouter
             }
             const favProducts = await FavouriteMealRecord.getAll(data.userId);
             const favMeals = convertDatabaseDatasToFrontEndDatas(favProducts, data.userId);
-            res.json(favMeals)
+            res.json({
+                favMeals,
+                success: true,
+            })
         } catch (e){
             next(e)
         }
@@ -51,7 +57,7 @@ userRouter
             await FavouriteMealRecord.add(mealData, productsData);
 
             res.status(200).json({
-                message: 'Added correctly',
+                success: true,
             })
         } catch(e){
             next(e);
@@ -68,12 +74,9 @@ userRouter
 
             res.json({
                 meals,
-                message: 'Usunięto',
-                status: 'Ok'
+                success: true,
             })
         } catch(e){
             next(e);
         }
-
-
     })

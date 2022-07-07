@@ -6,5 +6,8 @@ export const homeRouter = express.Router();
 homeRouter
     .get('/', async (req, res) => {
         const products = await ProductRecord.findAll();
-        res.json(products)
+        res.json({
+            products,
+            success: true,
+        })
     })

@@ -37,7 +37,10 @@ authRouter
 
             res.cookie('access_token', token, {
                 httpOnly: true,
-            }).status(200).json({status: 'ok', loggedUser})
+            }).status(200).json({
+                success: true,
+                loggedUser
+            })
         } catch (e) {
             next(e)
         }
@@ -64,10 +67,10 @@ authRouter
 
             res.json({
                 username,
-                status: 'ok',
+                success: true,
             })
         } catch (err) {
-            console.error(err.message)
+            next(err)
         }
 
     })
