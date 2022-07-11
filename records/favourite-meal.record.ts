@@ -1,6 +1,6 @@
 import {pool} from "../utils/db";
 import {FieldPacket} from "mysql2";
-import {FavouritesEntity, FavouritesJoinedInDatabase, FavouritesProducts, ProductEntity} from "../types";
+import {FavouritesJoinedInDatabase, FavouritesProducts, ProductEntity} from "../types";
 
 export class FavouriteMealRecord {
 

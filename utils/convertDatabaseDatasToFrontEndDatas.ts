@@ -1,7 +1,14 @@
 import {FavouritesEntity, FavouritesJoinedInDatabase, FavouritesProducts} from "../types";
 
 export const convertDatabaseDatasToFrontEndDatas = (dataFromDatabase: FavouritesJoinedInDatabase[], userId: string) => {
-    const mealsAsString = dataFromDatabase.map(product => (
+    const correctValues = dataFromDatabase.map(value => ({
+        ...value,
+        proteins: Math.round(value.proteins * 10) / 10,
+        carbohydrates: Math.round(value.carbohydrates * 10) / 10,
+        fats: Math.round(value.fats * 10) / 10,
+        calories: Math.round(value.calories * 10) / 10,
+    }))
+    const mealsAsString = correctValues.map(product => (
         {
             title: product.title,
             favouriteId: product.mealId,
@@ -12,7 +19,7 @@ export const convertDatabaseDatasToFrontEndDatas = (dataFromDatabase: Favourites
 
     const meals = [...new Set(mealsAsString)].map(meal => JSON.parse(meal))
 
-    const products = dataFromDatabase.map(product => (
+    const products = correctValues.map(product => (
         {
             favouriteId: product.mealId,
             name: product.name,
@@ -38,5 +45,7 @@ export const convertDatabaseDatasToFrontEndDatas = (dataFromDatabase: Favourites
         }
         favMeals.push(favMeal);
     }
+    console.log(favMeals[0].products)
+
     return favMeals;
 }

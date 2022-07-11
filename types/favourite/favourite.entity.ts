@@ -44,11 +44,16 @@ export interface UpdateTitleEntity {
     title: string;
     mealId: string;
     userId: string;
-    whatToChange: string;
+    whatToChange: 'title';
 }
 
 export interface UpdateValuesEntity {
     product: FavouritesProducts;
     userId: string;
-    whatToChange: string;
+    whatToChange: 'values';
+}
+
+export interface FavouritesJsonResponse {
+    favMeals: FavouritesEntity[],
+    success: true,
 }

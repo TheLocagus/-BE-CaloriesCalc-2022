@@ -1,4 +1,4 @@
-import * as express from 'express';
+import express from 'express';
 import {ProductRecord} from "../records/product.record";
 
 export const adminRouter = express.Router();
