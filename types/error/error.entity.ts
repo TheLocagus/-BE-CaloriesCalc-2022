@@ -1,5 +1,5 @@
 export interface ErrorEntity {
-    success: boolean,
+    success: false,
     status: number,
     message: string,
 }

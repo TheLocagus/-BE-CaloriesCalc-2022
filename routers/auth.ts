@@ -5,8 +5,6 @@ import jwt from 'jsonwebtoken';
 import {JWT_SECRET} from "../utils/JWT_SECRET";
 import {LoggedUserEntity, UserEntity} from "../types";
 import {createError} from "../utils/error";
-import {FavouriteMealRecord} from "../records/favourite-meal.record";
-import {convertDatabaseDatasToFrontEndDatas} from "../utils/convertDatabaseDatasToFrontEndDatas";
 
 export const authRouter = express.Router();
 
@@ -25,7 +23,6 @@ authRouter
             const loggedUser: LoggedUserEntity = {
                 id: user.id,
                 username,
-                //@TODO Changing after adding table with more details in db.
             }
             const token = jwt.sign(
                 {
@@ -35,9 +32,11 @@ authRouter
                 JWT_SECRET
             )
 
-            res.cookie('access_token', token, {
-                httpOnly: true,
-            }).status(200).json({
+            res
+                .cookie('access_token', token, {
+                    httpOnly: true,
+                })
+                .status(200).json({
                 success: true,
                 loggedUser
             })
@@ -66,8 +65,8 @@ authRouter
             await new UserRecord(newUser).create();
 
             res.json({
-                username,
                 success: true,
+                message: `User ${username} registered successfully.`
             })
         } catch (err) {
             next(err)
@@ -80,7 +79,7 @@ authRouter
             res.status(200).json({
                 success: true,
             })
-        } catch(e){
+        } catch (e) {
             next(e)
         }
     })
