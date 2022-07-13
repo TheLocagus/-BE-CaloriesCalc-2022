@@ -4,5 +4,6 @@ export const config = {
     dbUser: 'ssd',
     dbPassword: 'dsds',
     dbDatabase: 'sas',
+    corsOrigin: 'http://localhost:3000'
 }
  */

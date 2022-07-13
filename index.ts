@@ -7,6 +7,7 @@ import {userRouter} from "./routers/user";
 import cookieParser from 'cookie-parser';
 import {authRouter} from "./routers/auth";
 import {errorHandle} from "./utils/error";
+import {config} from "./config/config";
 
 const app = express();
 
@@ -18,7 +19,7 @@ const limiter = rateLimit({
 })
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: config.corsOrigin,
     credentials: true,
 }))
 app.use(limiter);
