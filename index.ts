@@ -1,4 +1,4 @@
-import express from 'express';
+import express, {Router} from 'express';
 import rateLimit from 'express-rate-limit';
 import {homeRouter} from "./routers/home";
 import cors from 'cors';
@@ -25,10 +25,15 @@ app.use(limiter);
 app.use(cookieParser());
 app.use(express.json());
 
-app.use('/', homeRouter);
-app.use('/auth', authRouter);
-app.use('/change-password', changePasswordRouter);
-app.use('/user', userRouter);
+const router = Router();
+
+
+router.use('/', homeRouter);
+router.use('/auth', authRouter);
+router.use('/change-password', changePasswordRouter);
+router.use('/user', userRouter);
+
+app.use('/api', router);
 
 app.use(errorHandle);
 
