@@ -32,6 +32,6 @@ app.use('/user', userRouter);
 
 app.use(errorHandle);
 
-app.listen(3002, 'localhost', ()=>{
+app.listen(3002, '0.0.0.0', ()=>{
     console.log('Server is running at http://localhost:3002.')
 })
