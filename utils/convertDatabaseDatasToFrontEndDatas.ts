@@ -45,7 +45,6 @@ export const convertDatabaseDatasToFrontEndDatas = (dataFromDatabase: Favourites
         }
         favMeals.push(favMeal);
     }
-    console.log(favMeals[0].products)
 
     return favMeals;
 }
