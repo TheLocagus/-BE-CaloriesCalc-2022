@@ -39,5 +39,5 @@ app.use('/api', router);
 app.use(errorHandle);
 
 app.listen(3002, '0.0.0.0', ()=>{
-    console.log('Server is running at http://localhost:3002.')
+    console.log('Server is running at http://localhost:3002/api.')
 })
