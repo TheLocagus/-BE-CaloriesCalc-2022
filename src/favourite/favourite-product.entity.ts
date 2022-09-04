@@ -1,17 +1,32 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { ProductInterface } from '../types';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { FavouriteProductInterface } from '../types/favourite-product/favourite-product';
+import { FavouriteMeal } from './favourite-meal.entity';
 
 @Entity()
-export class Product extends BaseEntity implements ProductInterface {
+export class FavouriteProduct
+  extends BaseEntity
+  implements FavouriteProductInterface
+{
   @PrimaryGeneratedColumn('uuid')
   id: string;
-
+  @ManyToOne(() => FavouriteMeal, (favouriteMeal) => favouriteMeal.id)
+  favouriteMeal: FavouriteMeal;
+  @Column({
+    type: 'tinyint',
+    nullable: false,
+  })
+  index: number;
   @Column({
     length: 70,
     nullable: false,
   })
   name: string;
-
   @Column({
     type: 'float',
     precision: 4,
